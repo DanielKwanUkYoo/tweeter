@@ -63,23 +63,36 @@ $(document).ready(function() {
       }
     })
   }
-
   loadTweets();
 
-    $('.container form').submit(function(event) {
+// ------Composing New Tweet-------
+    const errorEmpty = $('.error-message-empty');
+    const errorLimit = $('.error-message-overlimit')
+
+    $('#nav-bar .btn-compose').on('click', function(e) {
+      $('.new-tweet').slideToggle(400, function(e) {
+        $('.new-tweet-compose').focus();
+      });
+    })
+
+    $('.container form').submit(function(e) {
     event.preventDefault();
     var newTweet = $(this).serialize();
     var content = $('.new-tweet-compose').val();
     var textVal = content.length;
     $('new-tweet-compose').text(content);
 
-    if (content === "" || content === null || textVal > 140) {
-      alert("invalid")
+    if (content === "" || content === null) {
+      errorEmpty.css({"opacity": "1"})
+    } else if (textVal > 140) {
+      errorLimit.css({"opacity": "1"})
     } else {
       $.post( "/tweets", newTweet)
         .then(function( data ) {
         $('.tweet-container').empty();
         loadTweets();
+        errorEmpty.css({"opacity": "0"});
+        errorLimit.css({"opacity": "0"});
       });
     }
   })
