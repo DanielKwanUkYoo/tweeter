@@ -4,24 +4,13 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": {
-      "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-      "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-      "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-    },
-    "handle": "@SirIsaac"
-  },
-  "content": {
-    "text": "If I have seen further it is by standing on the shoulders of giants"
-  },
-  "created_at": 1461116232227
-}
-const data = [];
+// const tweetData = {};
+// const data = [];
 
 $(document).ready(function() {
+
+  // const text = $('new-tweet').text()
+
 
   function renderTweets(tweets) {
 
@@ -39,18 +28,24 @@ $(document).ready(function() {
     const $tweetContent = tweet.content.text;
     const $tweetDate = tweet["created_at"];
 
-
-    var $tweet = $('<article>').addClass('tweet').html(
-      `<header>
+    var $tweetHeader = $(`<header>
         <img src="${$tweetAva}" alt="avatar" align="left" width="40px" height="40px">
         <h2>${$tweetName}</h2>
         <h3>${$tweetHandle}</h3>
-      </header>
-        <p>${$tweetContent}</p><hr>
-      <footer>
+        </header>`);
+
+    var $tweetP = $('<p>').text($tweetContent);
+    var $lineBreak = $('<hr>')
+
+    var $tweetFooter = $(`<footer>
         <p>${$tweetDate}</p>
-      </footer>`
-    )
+      </footer>`)
+
+    var $tweet = $('<article>').addClass('tweet')
+      .append($tweetHeader)
+      .append($tweetP)
+      .append($lineBreak)
+      .append($tweetFooter);
     return $tweet[0];
   }
 
@@ -71,19 +66,18 @@ $(document).ready(function() {
 
   loadTweets();
 
-
     $('.container form').submit(function(event) {
     event.preventDefault();
-    var formData = $(this).serialize();
+    var newTweet = $(this).serialize();
     var content = $('.new-tweet-compose').val();
     var textVal = content.length;
+    $('new-tweet-compose').text(content);
 
     if (content === "" || content === null || textVal > 140) {
       alert("invalid")
     } else {
-      $.post( "/tweets", formData)
+      $.post( "/tweets", newTweet)
         .then(function( data ) {
-        $('.new-tweet-compose').val('');
         $('.tweet-container').empty();
         loadTweets();
       });

@@ -18,3 +18,16 @@
   position: absolute;
   line-height: 80px;
 }
+
+#nav-bar .btn-compose {
+  float: right;
+  height: 50px;
+  width: 150px;
+  margin: 15px;
+  background-color: #facc40;
+  border-radius: 5px;
+}
+
+#nav-bar .btn-compose:hover {
+  color: #8be2f9;
+}
