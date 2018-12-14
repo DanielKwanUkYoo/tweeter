@@ -20,7 +20,6 @@ module.exports = function makeDataHelpers(db) {
 
       const sortNewestFirst = (a, b) => a.created_at - b.created_at;
       db.collection('tweeter').find().toArray(function(err, result) {
-        console.log(result)
         callback(null, result.sort(sortNewestFirst))
       })
     }
