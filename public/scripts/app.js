@@ -1,16 +1,4 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
-// const tweetData = {};
-// const data = [];
-
 $(document).ready(function() {
-
-  // const text = $('new-tweet').text()
-
 
   function renderTweets(tweets) {
 
@@ -18,7 +6,6 @@ $(document).ready(function() {
       $('.tweet-container').prepend(createTweetElement(tweet))
     }
   }
-
 
   function createTweetElement(tweet) {
 
@@ -49,8 +36,6 @@ $(document).ready(function() {
     return $tweet[0];
   }
 
-
-
   function loadTweets(){
     $.ajax({
       url:'/tweets',
@@ -63,7 +48,6 @@ $(document).ready(function() {
       }
     })
   }
-  loadTweets();
 
 // ------Composing New Tweet-------
     const errorEmpty = $('.error-message-empty');
@@ -74,7 +58,7 @@ $(document).ready(function() {
         $('.new-tweet-compose').focus();
       });
     })
-
+// -------Handler for submitting-----
     $('.container form').submit(function(e) {
     event.preventDefault();
     var newTweet = $(this).serialize();
@@ -82,6 +66,7 @@ $(document).ready(function() {
     var textVal = content.length;
     $('new-tweet-compose').text(content);
 
+// ------Conditions before posting-----
     if (content === "" || content === null) {
       errorEmpty.css({"opacity": "1"})
     } else if (textVal > 140) {
@@ -96,9 +81,5 @@ $(document).ready(function() {
       });
     }
   })
-
-
+  loadTweets();
 })
-// Test / driver code (temporary)
-// console.log($tweet); // to see what it looks like
-// $('#tweet-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
