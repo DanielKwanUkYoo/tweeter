@@ -5,6 +5,7 @@
   height: 150px;
   border: solid #ccc 2px;
   border-radius: 5px;
+  display: none;
 }
 
 .new-tweet h2 {
