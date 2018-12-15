@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  // var moment = require('moment')
   function renderTweets(tweets) {
 
     for (var tweet of tweets) {
@@ -8,7 +9,7 @@ $(document).ready(function() {
   }
 
   function createTweetElement(tweet) {
-
+    // moment().startOf('day').fromNow();
     const $tweetName = tweet.user.name;
     const $tweetAva = tweet.user.avatars["small"];
     const $tweetHandle = tweet.user.handle;
@@ -26,6 +27,11 @@ $(document).ready(function() {
 
     var $tweetFooter = $(`<footer>
         <p>${$tweetDate}</p>
+        <div class="icons">
+        <img src="/images/flag.png" alt="like" align="right" width="25px" height="25px">
+        <img src="/images/heart.png" alt="like" align="right" width="25px" height="25x">
+        <img src="/images/refresh.png" alt="like" align="right" width="25px" height="25px">
+        </div>
       </footer>`)
 
     var $tweet = $('<article>').addClass('tweet')

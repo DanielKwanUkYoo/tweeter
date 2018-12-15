@@ -65,4 +65,17 @@
 
 .tweet:hover {
   opacity: 1;
+
+
 }
+
+.icons img{
+
+  opacity: 0;
+  padding: 2px;
+}
+
+.tweet:hover .icons img{
+  opacity: 1;
+}
+
