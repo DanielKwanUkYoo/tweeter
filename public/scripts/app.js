@@ -55,9 +55,11 @@ $(document).ready(function() {
 
 // ------Composing New Tweet-------
     const errorEmpty = $('.error-message-empty');
-    const errorLimit = $('.error-message-overlimit')
+    const errorLimit = $('.error-message-overlimit');
+    const tweetBtn = $('#nav-bar .btn-compose');
+    const textarea = $('.new-tweet-compose');
 
-    $('#nav-bar .btn-compose').on('click', function(e) {
+    tweetBtn.on('click', function(e) {
       $('.new-tweet').slideToggle(400, function(e) {
         $('.new-tweet-compose').focus();
       });
@@ -66,9 +68,8 @@ $(document).ready(function() {
     $('.container form').submit(function(e) {
     event.preventDefault();
     var newTweet = $(this).serialize();
-    var content = $('.new-tweet-compose').val();
+    var content = textarea.val();
     var textVal = content.length;
-    $('new-tweet-compose').text(content);
 
 // ------Conditions before posting-----
     if (content === "" || content === null) {
@@ -80,7 +81,7 @@ $(document).ready(function() {
         .then(function( data ) {
         $('.tweet-container').empty();
         loadTweets();
-        content =
+        textarea.val('');
         errorEmpty.css({"opacity": "0"});
         errorLimit.css({"opacity": "0"});
       });
