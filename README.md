@@ -18,3 +18,8 @@ Built based on HTML, CSS, JS, jQuery and AJAX. Used MongDB and Express for back-
 - Node 5.10.x or above
 - MongoDB 2.2 or above
 - Chance 1.08 or above
+
+## Screenshots
+
+!["Main Page"](https://github.com/DanielKwanUkYoo/tweeter/blob/master/docs/tweeter_main.png)
+!["tweets"](https://github.com/DanielKwanUkYoo/tweeter/blob/master/docs/tweeter_tweets.png)
