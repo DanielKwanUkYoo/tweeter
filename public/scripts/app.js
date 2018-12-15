@@ -9,7 +9,7 @@ $(document).ready(function() {
   }
 
   function createTweetElement(tweet) {
-    // moment().startOf('day').fromNow();
+
     const $tweetName = tweet.user.name;
     const $tweetAva = tweet.user.avatars["small"];
     const $tweetHandle = tweet.user.handle;
@@ -17,20 +17,18 @@ $(document).ready(function() {
     const $tweetDate = tweet["created_at"];
 
     var $tweetHeader = $(`<header>
-        <img src="${$tweetAva}" alt="avatar" align="left" width="40px" height="40px">
+        <img src="${$tweetAva}" alt="avatar">
         <h2>${$tweetName}</h2>
         <h3>${$tweetHandle}</h3>
         </header>`);
-
     var $tweetP = $('<p>').text($tweetContent);
     var $lineBreak = $('<hr>')
-
     var $tweetFooter = $(`<footer>
-        <p>${$tweetDate}</p>
+        <p>${moment($tweetDate).fromNow()}</p>
         <div class="icons">
-        <img src="/images/flag.png" alt="like" align="right" width="25px" height="25px">
-        <img src="/images/heart.png" alt="like" align="right" width="25px" height="25x">
-        <img src="/images/refresh.png" alt="like" align="right" width="25px" height="25px">
+        <img src="/images/flag.png" alt="flag">
+        <img src="/images/heart.png" alt="like">
+        <img src="/images/refresh.png" alt="refresh">
         </div>
       </footer>`)
 
@@ -82,6 +80,7 @@ $(document).ready(function() {
         .then(function( data ) {
         $('.tweet-container').empty();
         loadTweets();
+        content =
         errorEmpty.css({"opacity": "0"});
         errorLimit.css({"opacity": "0"});
       });
